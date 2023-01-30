@@ -1,8 +1,24 @@
+import { useState } from 'react';
+  
 function QuestionForm(params) {
+  const [inputValue, setInputValue] = useState('Posez votre question ici')
+  const isInputError = inputValue.includes('f');
     return(
-      <form onSubmit={handleSubmit}>
-        <input type='text' name='my_input' defaultValue='Tapez votre texte' />
-        <button type='submit'>Entrer</button>
+      <form>
+        
+        <textarea
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button onClick={() => {
+            if(isInputError) {
+              alert('🔥 Vous n\'avez pas le droit d\'utiliser la lettre "f" ici.');
+            } else {
+              alert({inputValue});
+            }   
+          }}>
+          Enrégistrer 
+        </button>
       </form>
     )
 }
